@@ -1,6 +1,5 @@
 package dev.perfectbogus.msscbeerservice.web.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.perfectbogus.msscbeerservice.web.model.BeerDto;
 import org.junit.jupiter.api.Test;
@@ -27,7 +26,7 @@ class BeerControllerTest {
     @Test
     void getBeerById() throws Exception {
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/api/v1/beer/" + UUID.randomUUID().toString())
+                MockMvcRequestBuilders.get("/api/v1/beer/" + UUID.randomUUID())
                         .accept(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk());
     }
@@ -50,7 +49,7 @@ class BeerControllerTest {
         String beerDtoJson = objectMapper.writeValueAsString(beerDto);
 
         mockMvc.perform(
-                MockMvcRequestBuilders.put("/api/v1/beer/" + UUID.randomUUID().toString())
+                MockMvcRequestBuilders.put("/api/v1/beer/" + UUID.randomUUID())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(beerDtoJson))
                 .andExpect(status().isNoContent());
